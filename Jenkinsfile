@@ -8,8 +8,8 @@ pipeline{
 	     	def REGISTRY = "lacritzadmin/$CONTAINER_NAME"
          	def REGISTRYCREDENTIAL = 'dockerhub'
          	DOCKERIMAGE = ''
-            HOSTPORT = '3018'
-            DOCKERPORT = '3018'
+            HOSTPORT = '3015'
+            DOCKERPORT = '3015'
             SSHPORT = "${env."${CURRENT_BRANCH_NAME}-ssh"}"
 	}
     agent any
