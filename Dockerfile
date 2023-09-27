@@ -14,6 +14,6 @@ RUN apk add --no-cache tzdata && \
     echo "Asia/Kolkata" > /etc/timezone
 
 
-EXPOSE 3018
+EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
