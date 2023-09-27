@@ -9,7 +9,7 @@ pipeline{
          	def REGISTRYCREDENTIAL = 'dockerhub'
          	DOCKERIMAGE = ''
             HOSTPORT = '3015'
-            DOCKERPORT = '3015'
+            DOCKERPORT = '3000'
             SSHPORT = "${env."${CURRENT_BRANCH_NAME}-ssh"}"
 	}
     agent any
