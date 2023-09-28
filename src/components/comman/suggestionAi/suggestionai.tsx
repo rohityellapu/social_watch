@@ -102,7 +102,7 @@ const SuggestionAi = ({ aiTextJson,
             }
             e.preventDefault()
             // console.log(payload, "e   **&^%%^")
-            const response = await axios.post(process.env.NEXT_PUBLIC_AI_GENERATE_URL, payload)
+            const response = await axios.post('http://85.214.66.84:4040/get_caption', payload)
             // console.log(response)
             setAiText(response.data.captions[0])
             setPreviewData(response.data.captions[0])

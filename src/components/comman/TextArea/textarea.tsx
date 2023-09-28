@@ -112,7 +112,7 @@ const TextArea = ({
       e.preventDefault()
       // console.log(payload, "e   **&^%%^")
       // ts define url type
-      const url =  process.env.NEXT_PUBLIC_AI_GENERATE_URL
+      const url =  'http://85.214.66.84:4040/get_caption'
       const response = await axios.post(url, payload)
       // console.log(response, "textarea &&&&&&&&&&&&44$$$$$$$$$$$")
       if (response.data.captions[0]) {
