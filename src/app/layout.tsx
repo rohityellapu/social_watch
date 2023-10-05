@@ -1,3 +1,4 @@
+'use client'
 import * as React from 'react';
 import Link from 'next/link';
 import AppBar from '@mui/material/AppBar';
@@ -19,20 +20,21 @@ import SettingsIcon from '@mui/icons-material/Settings';
 import SupportIcon from '@mui/icons-material/Support';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ThemeRegistry from '@/components/ThemeRegistry/ThemeRegistry';
-import  ProviderAndStore  from '@/store/provider';
-// import Scheduler from '@/app/(routes)/scheduler/page';
+import { useEffect, useState } from 'react';
+import { isAuthenticated } from '../app/(routes)/auth/auth'
+import { useRouter } from 'next/navigation';
+import ProtectedRoute from './(routes)/protected/page';
 
 export const metadata = {
-  title: 'Social Watch', 
+  title: 'Social Watch',
   description: 'Social Watch',
 };
 
 const DRAWER_WIDTH = 240;
-
 const LINKS = [
   { text: 'Home', href: '/', icon: HomeIcon },
-  { text: 'Scheduler', href: '/scheduler', icon: StarIcon },
-  // { text: 'Analytics', href: '/tasks', icon: AnalyticsIcon },
+  { text: 'Scheduler', href: '/starred', icon: StarIcon },
+  { text: 'Analytics', href: '/tasks', icon: AnalyticsIcon },
 ];
 
 const PLACEHOLDER_LINKS = [
@@ -42,10 +44,10 @@ const PLACEHOLDER_LINKS = [
 ];
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+
   return (
     <html lang="en">
       <body>
-      <ProviderAndStore>
         <ThemeRegistry>
           <AppBar position="fixed" sx={{ zIndex: 2000 }}>
             <Toolbar sx={{ backgroundColor: 'background.paper' }}>
@@ -107,10 +109,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               p: 3,
             }}
           >
-            {children}
+            <ProtectedRoute>
+           {children}
+           </ProtectedRoute>
           </Box>
         </ThemeRegistry>
-      </ProviderAndStore>
       </body>
     </html>
   );

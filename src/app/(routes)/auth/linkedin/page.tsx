@@ -17,8 +17,8 @@ export default function TwitterAuth() {
     fetch('https://authserver-one.vercel.app/auth')
     .then(async (rawdata)=>{
       const data=await rawdata.json()
-            { setAuth(data[0].Twitter.Authenticated)
-              setUser(data[0].Twitter.twitter_username)}
+            { setAuth(data[0].Linkedin.Authenticated)
+              setUser("Authenticated User")}
   })
     .catch((error)=> console.log(error))
   });
@@ -31,14 +31,14 @@ export default function TwitterAuth() {
     fetch('https://authserver-one.vercel.app/auth')
     .then(async (rawdata)=>{
       const data=await rawdata.json()
-            {console.log(data[0].Twitter.Authenticated)
-              AuthorNot=data[0].Twitter.Authenticated}
+            {console.log(data[0].Linkedin.Authenticated)
+              AuthorNot=data[0].Linkedin.Authenticated}
   })
     .catch((error)=> console.log(error))
   }
   const twitterLogin = async () => {
     const authWindow = window.open(
-      'https://authserver-one.vercel.app/auth/twitter',
+      'https://authserver-one.vercel.app/auth/linkedin',
       '_blank',
       'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=600,left=100,top=100'
     )
@@ -54,7 +54,7 @@ export default function TwitterAuth() {
     // const data = await res.json()
     // console.log(data)
     // const authURL = data.url
-    authWindow.location.href = `https://authserver-one.vercel.app/auth/twitter`
+    authWindow.location.href = `https://authserver-one.vercel.app/auth/linkedin`
 
     // listen for "window.opener.postMessage" sent from backend via <script>
     // window.addEventListener('message', (event) => {
@@ -78,7 +78,7 @@ export default function TwitterAuth() {
     >
     <h1 className='text-4xl font-bold mb-10'>Select a network to connect a profile.</h1>
     <Paper>
-    <Image src="/twitter.svg" alt="Twitter Logo" width={100} height={100} />
+    <Image src="/linkedin.svg" alt="Twitter Logo" width={100} height={100} />
     </Paper>
     <Typography variant='h5' sx={{paddingTop:2}} fontWeight="medium" >Authorize Flable on Twitter</Typography>
     <Typography variant='body1' sx={{marginTop:2}}>We need permission to access and publish content to Twitter on your behalf.</Typography>
@@ -99,7 +99,7 @@ export default function TwitterAuth() {
                     >
       <h1 className='text-4xl font-bold mb-10'>You can Start Posting</h1>
       <Paper className='card'>
-        <Image src="/twitter.svg" alt="Twitter Logo" width={100} height={100} />
+        <Image src="/linkedin.svg" alt="Twitter Logo" width={100} height={100} />
       </Paper>
       <Typography variant='h5' sx={{padding:2}} fontWeight="medium">Connection Successful</Typography>
       <Typography variant='body1'sx={{padding:2}} >{Username}</Typography>
@@ -124,7 +124,7 @@ export default function TwitterAuth() {
                     >
       <h1 className='text-4xl font-bold mb-10'>Failed Authentication</h1>
       <Paper className='card'>
-        <Image src="/twitter.svg" alt="Twitter Logo" width={100} height={100} />
+        <Image src="/linkedin.svg" alt="Twitter Logo" width={100} height={100} />
       </Paper>
       <Typography variant='h5' sx={{padding:2}} fontWeight="medium">Connection Unsuccessful</Typography>
      

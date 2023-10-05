@@ -70,6 +70,22 @@ export default function Connect() {
         <Card  sx={{ padding: 2, textAlign: 'center',}} >
         <CardMedia
                 component="img"
+                alt="Linkedin Image"
+                height="135"
+                image="/linkedin.svg"
+                title="Linkedin Social"
+                sx={{ padding: 2 }}
+              />
+          <Typography sx={{  mx: 'auto',
+          textAlign: 'center',
+          
+           }} variant="h6" component="p">Linkedin</Typography>
+          <Button sx={{  marginTop:1
+           }} variant='contained' onClick={() => router.push('/auth/linkedin')}>Connect</Button>
+        </Card>
+        <Card  sx={{ padding: 2, textAlign: 'center',}} >
+        <CardMedia
+                component="img"
                 alt="Instagram Image"
                 height="135"
                 image="/youtube.svg"
