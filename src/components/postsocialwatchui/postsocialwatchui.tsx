@@ -9,6 +9,7 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { TimePicker } from '@mui/x-date-pickers/TimePicker';
 import AddIcon from '@mui/icons-material/Add';
 import { useSelector } from 'react-redux';
+import swal from 'sweetalert';
 import axios from 'axios';
 const PostSocialWatchUi = () => {
 
@@ -35,7 +36,15 @@ const PostSocialWatchUi = () => {
             }
             axios.post("https://authserver-one.vercel.app/tweet", payload).then((res) => {
                 console.log(res, "res")
+                // if res is sucess then show alert sucess
+                if (res?.data?.status === 200) {
+                    swal("Your Tweet has been Scheduled!", "success");
+                }
             }).catch((err) => {
+                if(err?.message === "Request failed with status code 401"){
+                    swal("Please Login Twitter Account!", "error");
+                }
+
                 console.log(err, "err")
             })
 
@@ -48,7 +57,16 @@ const PostSocialWatchUi = () => {
             }
             axios.post("https://authserver-one.vercel.app/Linkedin", payload).then((res) => {
                 console.log(res, "res")
+
+                // if res is sucess then show alert sucess
+                if (res?.data?.status === 200) {
+                    swal("Your Linkedin Post has been Scheduled!", "success");
+                }
+
             }).catch((err) => {
+                if(err?.message === "Request failed with status code 401"){
+                    swal("Please Login Linkedin Account!", "error");
+                }
                 console.log(err, "err")
             })
         }

@@ -82,6 +82,17 @@ const SuggestionAi = ({ aiTextJson,
     // console.log(wordSize, "wordSize")
     const content = useSelector((state: any) => state.socailwatch)
     // console.log(content, "content")
+    const handleInsert = () => {
+        dispatch(addSocialWatch({
+            content: aiText,
+            typedText: aiText,
+            URL: content?.socialwatch.URL,
+            aiTypedText:true
+        }))
+    }
+
+    console.log(content, "content?.socialwatch.content")
+    // console.log(content?.socialwatch.content, "content?.socialwatch.content")
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
@@ -273,6 +284,7 @@ const SuggestionAi = ({ aiTextJson,
                                 textTransform: "none",
                             }}
                             size='small'
+                            onClick={handleInsert}
                             >Insert</Button>
                         </div>
                         <br />

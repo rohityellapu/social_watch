@@ -11,6 +11,7 @@ import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt
 import axios from 'axios'
 import { showGenerateAiOption, addSocialWatch } from "@/slices/socailwatchSlice";
 import { useSelector, useDispatch } from "react-redux";
+import { type } from "os";
 
 const blue = {
   100: "#DAECFF",
@@ -45,20 +46,15 @@ const StyledTextarea = styled(TextareaAutosize)(
     line-height: 1.5;
     padding: 12px;
     border-radius: 12px 12px 12px 12px;
-    color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
-    // background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
     border:none;
     box-shadow: none;
     padding-bottom: 7rem;
     };
   
     &:hover {
-      border-color: ${blue[400]};
     }
   
     &:focus {
-      border-color: ${blue[400]};
-      box-shadow: 0 0 0 3px ${theme.palette.mode === "dark" ? blue[500] : blue[200]
     };
     }
   
@@ -80,22 +76,100 @@ const TextArea = ({
 }: TextAreaProps) => {
   // console.log(captionType, "captionType textArea")
   const [url, setUrl] = React.useState<string>("")
+  const [previewUrl, setPreviewUrl] = React.useState<string>("")
+  const [aiTextInsert, setAiTextInsert] = React.useState<boolean>(false)
   const dispatch = useDispatch();
+
   const socailName = useSelector((state: any) => state.socailwatch)
   const handleChangeUrl = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // create url for image and video
     const file = event.target.files[0];
-    // url shoud auto adjust in iframe
-    const url = URL.createObjectURL(file);
-    // console.log(url, "url")
-    dispatch(addSocialWatch({
-      URL: url
-    }))
-    setUrl(url)
-  }
-  useEffect(() => {
+    if (file) {
+      const render = new FileReader();
+      // read file and set width and height with canvas 
 
-  }, [url])
+      render.onload = (e: any) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const MAX_WIDTH = 200;
+          const MAX_HEIGHT = 200;
+          let width = img.width;
+          let height = img.height;
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height *= MAX_WIDTH / width;
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width *= MAX_HEIGHT / height;
+              height = MAX_HEIGHT;
+            }
+          }
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext("2d");
+          ctx?.drawImage(img, 0, 0, width, height);
+          const dataurl = canvas.toDataURL(file.type);
+          console.log(dataurl, "dataurl1")
+          dispatch(addSocialWatch({
+            url: dataurl,
+            // previewUrl: dataurl
+          }))
+          setUrl(dataurl)
+        }
+        img.src = e.target.result;
+      }
+      render.readAsDataURL(file);
+
+    }
+    if (file) {
+      const render = new FileReader();
+      // read file and set width and height with canvas 
+
+      render.onload = (e: any) => {
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          const MAX_WIDTH = 400;
+          const MAX_HEIGHT = 400;
+          let width = img.width;
+          let height = img.height;
+          if (width > height) {
+            if (width > MAX_WIDTH) {
+              height *= MAX_WIDTH / width;
+              width = MAX_WIDTH;
+            }
+          } else {
+            if (height > MAX_HEIGHT) {
+              width *= MAX_HEIGHT / height;
+              height = MAX_HEIGHT;
+            }
+          }
+          canvas.width = width;
+          canvas.height = height;
+          const ctx = canvas.getContext("2d");
+          ctx?.drawImage(img, 0, 0, width, height);
+          const dataurl = canvas.toDataURL(file.type);
+          console.log(dataurl, "dataurl2")
+          dispatch(addSocialWatch({
+            // url: url,
+            previewUrl: dataurl
+          }))
+
+          setPreviewUrl(dataurl)
+        }
+        img.src = e.target.result;
+      }
+      render.readAsDataURL(file);
+    }
+
+
+  }
+
+  // useEffect(() => {
+
+  // }, [url,previewUrl])
   const handleSuggestionAi = async (e: any, params: any) => {
     // setProgress(true)
     try {
@@ -115,7 +189,7 @@ const TextArea = ({
       e.preventDefault()
       // console.log(payload, "e   **&^%%^")
       // ts define url type
-      const url =  'http://85.214.66.84:4040/get_caption'
+      const url = 'http://85.214.66.84:4040/get_caption'
       const response = await axios.post(url, payload)
       // console.log(response, "textarea &&&&&&&&&&&&44$$$$$$$$$$$")
       if (response.data.captions[0]) {
@@ -135,19 +209,48 @@ const TextArea = ({
       console.log(error)
     }
   }
+
+  //  if redux socailName.socialwatch.aiTypedTex is getting true then set captionType by redux socailName.socialwatch.aiTypedText and useEffect
+  useEffect(() => {
+    if (socailName.socialwatch.aiTypedText) {
+      setAiTextInsert(true)
+    }
+  }, [socailName])
+
+  // console.log(socailName, "socailName")
+  // console.log(captionType, "captionType")
+  // console.log(socailName.socialwatch.typedText, "socailName.socialwatch.aiTypedtext")
+  console.log(socailName.socialwatch.aiTypedText, "socailName.socialwatch.aiTypedtext")
   return (
     <div>
       <Paper elevation={3} sx={{
       }}>
+        {
+          socailName.socialwatch.aiTypedText === true ?
+            <StyledTextarea
+              maxRows={4}
+              aria-label="maximum height"
+              placeholder="content goes here...."
+              defaultValue={socailName.socialwatch.typedText}
+              // defaultValue={captionType}
+              name="captionType"
+              onChange={(e) => setCaptionType(e.target.value)}
+            /> : ""
+        }
+        {
+          aiTextInsert === false ?
+            <StyledTextarea
+              maxRows={4}
+              aria-label="maximum height"
+              placeholder="content goes here...."
+              defaultValue={captionType?.length > 0 ? captionType : ""}
+              // defaultValue={captionType}
+              name="captionType"
+              onChange={(e) => setCaptionType(e.target.value)}
+            /> : ""
+        }
 
-        <StyledTextarea
-          maxRows={4}
-          aria-label="maximum height"
-          placeholder="content goes here...."
-          defaultValue={captionType?.length > 0 ? captionType : ""}
-          name="captionType"
-          onChange={(e) => setCaptionType(e.target.value)}
-        />
+
 
         {/* input type accept only image and video */}
         {/* <label for="avatar">upload img and video</label> */}
@@ -168,9 +271,11 @@ const TextArea = ({
               }}
               // autoPlay off
               // autoPlay={false}
-              width={url?.length > 0 ? "30%" : "30%"}
-              height={url?.length > 0 ? "auto" : "auto"}
-              allowFullScreen
+              width="200"
+              height="200"
+              // allowFullScreen
+              // disable scroll
+              scrolling="no"
             //  allowScriptAccess="always"
 
             />
@@ -195,28 +300,28 @@ const TextArea = ({
         {/* icon={<ImageSharpIcon />} */}
         {/* show img for ImageSharpIcon  */}
         <label htmlFor="contained-button-file">
-          <SentimentSatisfiedAltIcon 
-          fontSize="small"
-          
+          <SentimentSatisfiedAltIcon
+            fontSize="small"
+
           />
         </label>
         <label htmlFor="contained-button-file">
           <InsertPhotoOutlinedIcon
-          fontSize="small"
-          
+            fontSize="small"
+
           />
         </label>
         {/* show img for VideoCameraBackSharpIcon  */}
         <label htmlFor="contained-button-file"
-       
+
         >
           <VideocamOutlinedIcon
-          // size of icon
-          style={{
-            // margin top
-            // paddingTop: "px",
-           }}
-          fontSize="medium"
+            // size of icon
+            style={{
+              // margin top
+              // paddingTop: "px",
+            }}
+            fontSize="medium"
           />
         </label>
       </div>

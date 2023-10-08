@@ -59,56 +59,60 @@ const PreviewWatch = ({ previewData }: PreviewWatchProps) => {
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
-
+    console.log(socialData, "socialData?.URL")
     // console.log(socialData.socialwatch.URL, "socialData?.URL")
     useEffect(() => {
         // console.log(socialData.socialwatch.URL, "socialData?.URL")
     }
-        , [socialData.socialwatch.URL])
+        , [socialData.socialwatch.previewUrl])
     return (
         // <Item>
-            <Paper elevation={3}>
-                <Box sx={{ width: '100%' }} >
-                    <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-                            <Tab label="Twitter " style={{
-                                textTransform: "none",
-                            }} {...a11yProps(0)} />
-                            <Tab label="Linkedin" style={{
-                                textTransform: "none",
-                            }}  {...a11yProps(1)} />
-                        </Tabs>
-                    </Box>
-                    <CustomTabPanel value={value} index={0}>
-                        {
-                            socialData.socialwatch.content
-
-                        }
-                        <Paper elevation={0}>
-                            <iframe src={socialData.socialwatch.URL} style={{
-                                height: "20rem",
-                                width: "100%",
-                                backgroundColor:"grey"
-                            }}></iframe>
-                        </Paper>
-                    </CustomTabPanel>
-                    <CustomTabPanel value={value} index={1}>
-                        {
-                            socialData.socialwatch.content
-                        }
-                        <Paper elevation={0}>
-                            {/* img from public folder */}
-                            <iframe src={socialData.socialwatch.URL} style={{
-                                height: "20rem",
-                                width: "100%",
-                                backgroundColor:"grey"
-
-                            }}></iframe>
-
-                        </Paper>
-                    </CustomTabPanel>
+        <Paper elevation={3}>
+            <Box sx={{ width: '100%' }} >
+                <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                    <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
+                        <Tab label="Twitter " style={{
+                            textTransform: "none",
+                        }} {...a11yProps(0)} />
+                        <Tab label="Linkedin" style={{
+                            textTransform: "none",
+                        }}  {...a11yProps(1)} />
+                    </Tabs>
                 </Box>
-            </Paper>
+                <CustomTabPanel value={value} index={0}>
+                    {
+                        socialData.socialwatch.content
+
+                    }
+                    <Paper elevation={0}>
+                        <iframe src={socialData.socialwatch.previewUrl}
+                            width="400"
+                            height="400"
+                            scrolling='no'
+                            style={{
+                                backgroundColor: "grey"
+                            }}></iframe>
+                    </Paper>
+                </CustomTabPanel>
+                <CustomTabPanel value={value} index={1}>
+                    {
+                        socialData.socialwatch.content
+                    }
+                    <Paper elevation={0}>
+                        {/* img from public folder */}
+                        <iframe src={socialData.socialwatch.URL} style={{
+                            backgroundColor: "grey"
+
+                        }}
+                        width="400"
+                        height="400"
+                            scrolling='no'
+                        ></iframe>
+
+                    </Paper>
+                </CustomTabPanel>
+            </Box>
+        </Paper>
 
         // </Item>
     );

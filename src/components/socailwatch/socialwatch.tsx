@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Typography, Paper } from '@mui/material';
 // import useSelector from 'react-redux';
 import { useSelector } from 'react-redux';
@@ -8,6 +8,8 @@ import BasicTabs from '@/components/comman/Tabeffect/tab';
 import SuggestionAi from "@/components/comman/suggestionAi/suggestionai"
 import ArrowDropDownSharpIcon from '@mui/icons-material/ArrowDropDownSharp';
 import PostSocialWatchUi from '@/components/postsocialwatchui/postsocialwatchui'
+// import circular progess bar from material ui
+import CircularProgress from '@mui/material/CircularProgress';
 const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
     ...theme.typography.body2,
@@ -41,8 +43,22 @@ const SocialWatch = ({ aiTextJson, setSocial_channel, setCaptionType,
     captionType,
     setPreviewData
 }: SocialWatchProps) => {
+    // define progess bar state with boolean
+    const [progress, setProgress] = React.useState<boolean>(true);
     const showAiGenerator = useSelector((state: any) => state.socailwatch)
     // console.log(showAiGenerator, "showAiGenerator")
+    useEffect(() => {
+        // if showAiGenerator?.enableGenerateAiOption === true  then setProgress true
+        if (showAiGenerator?.enableGenerateAiOption === true) {
+            // setProgress(false)
+            setTimeout(() => {
+                setProgress(false)
+            }, 1000);
+        }
+       
+    }
+        , [showAiGenerator?.enableGenerateAiOption])
+
     return (
         <>
             <br />
@@ -84,12 +100,32 @@ const SocialWatch = ({ aiTextJson, setSocial_channel, setCaptionType,
 
               
                 <br />
+                {/*  if progress is set as false then show suggestionAi */}
                 {
-                    showAiGenerator?.enableGenerateAiOption === true ?
+                    progress === false && showAiGenerator?.enableGenerateAiOption === true ?
+                        <SuggestionAi aiTextJson={aiTextJson}
+                            setPreviewData={setPreviewData}
+                        /> :""
+                }
+
+                {/* {
+                    progress === false ?
+                        <div style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            height: "100%",
+                            width: "100%",
+                        }}>
+                            <CircularProgress />
+                        </div> : ""
+                }
+                {
+                    showAiGenerator?.enableGenerateAiOption === true && progress  ?
                         <SuggestionAi aiTextJson={aiTextJson}
                             setPreviewData={setPreviewData}
                         /> : ""
-                }
+                } */}
                 <br />
                 <PostSocialWatchUi/>
                 <br/>
