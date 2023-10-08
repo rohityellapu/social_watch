@@ -39,7 +39,8 @@ export default function Scheduler(): JSX.Element {
       </div>
       <div className='main'>
         <Box sx={{ flexGrow: 1 }}>
-          <Grid container spacing={1}>
+          <Grid container spacing={1} 
+          >
             <Grid item xs={7}>
               <SocialWatch aiTextJson={aiTextJson}  setSocial_channel={setSocial_channel} captionType={captionType} setCaptionType={setCaptionType}  setPreviewData={setPreviewData}  />
             </Grid>

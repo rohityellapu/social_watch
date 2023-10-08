@@ -199,7 +199,12 @@ const SuggestionAi = ({ aiTextJson,
                                     placeholder='What this post is about ?'
                                 />
                             </Grid>
-                            <Grid xs={3}>
+                            <Grid xs={3}
+                            style={{
+                                paddingLeft: "30px"
+
+                            }}
+                            >
                                 <Autocomplete
                                     disablePortal
                                     id="combo-box-demo"
@@ -211,7 +216,12 @@ const SuggestionAi = ({ aiTextJson,
                                     renderInput={(params) => <TextField {...params} label="Tone" />}
                                 />
                             </Grid>
-                            <Grid xs={3}>
+                            <Grid xs={3}
+                            
+                            style={{
+                                paddingLeft: "35px"
+                            }}
+                            >
                                 <Autocomplete
                                     disablePortal
                                     id="combo-box-demo"
@@ -247,7 +257,7 @@ const SuggestionAi = ({ aiTextJson,
                         <div style={{
                             float: "right",
                         }}>
-                            <Button variant="contained" color="primary" 
+                            <Button variant="text" color="primary" 
                             size='small'
                             style={{
                                 textTransform: "none",

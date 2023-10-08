@@ -3,8 +3,11 @@ import React, { useEffect } from "react";
 import { TextareaAutosize } from "@mui/base/TextareaAutosize";
 import { Paper, Button } from "@mui/material";
 import { styled } from "@mui/system";
-import ImageSharpIcon from '@mui/icons-material/ImageSharp';
-import VideoCameraBackSharpIcon from '@mui/icons-material/VideoCameraBackSharp';
+// import ImageSharpIcon from '@mui/icons-material/ImageSharp';
+import InsertPhotoOutlinedIcon from '@mui/icons-material/InsertPhotoOutlined';
+// import VideoCameraBackSharpIcon from '@mui/icons-material/VideoCameraBackSharp';
+import VideocamOutlinedIcon from '@mui/icons-material/VideocamOutlined';
+import SentimentSatisfiedAltIcon from '@mui/icons-material/SentimentSatisfiedAlt';
 import axios from 'axios'
 import { showGenerateAiOption, addSocialWatch } from "@/slices/socailwatchSlice";
 import { useSelector, useDispatch } from "react-redux";
@@ -43,7 +46,7 @@ const StyledTextarea = styled(TextareaAutosize)(
     padding: 12px;
     border-radius: 12px 12px 12px 12px;
     color: ${theme.palette.mode === "dark" ? grey[300] : grey[900]};
-    background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
+    // background: ${theme.palette.mode === "dark" ? grey[900] : "#fff"};
     border:none;
     box-shadow: none;
     padding-bottom: 7rem;
@@ -178,7 +181,7 @@ const TextArea = ({
       {/* with icon click upload file */}
       <div style={{
         float: "left",
-        padding: "10px",
+        paddingTop: "20px",
       }}>
         <input
           accept="image/*,video/*"
@@ -192,17 +195,35 @@ const TextArea = ({
         {/* icon={<ImageSharpIcon />} */}
         {/* show img for ImageSharpIcon  */}
         <label htmlFor="contained-button-file">
-          <ImageSharpIcon />
+          <SentimentSatisfiedAltIcon 
+          fontSize="small"
+          
+          />
+        </label>
+        <label htmlFor="contained-button-file">
+          <InsertPhotoOutlinedIcon
+          fontSize="small"
+          
+          />
         </label>
         {/* show img for VideoCameraBackSharpIcon  */}
-        <label htmlFor="contained-button-file">
-          <VideoCameraBackSharpIcon />
+        <label htmlFor="contained-button-file"
+       
+        >
+          <VideocamOutlinedIcon
+          // size of icon
+          style={{
+            // margin top
+            // paddingTop: "px",
+           }}
+          fontSize="medium"
+          />
         </label>
       </div>
       {/* button float right */}
       <div style={{
         float: "right",
-        paddingTop: "10px",
+        paddingTop: "20px",
       }}>
         <Button variant="outlined" color="primary"
           onClick={(e) => handleSuggestionAi(e)}
@@ -211,6 +232,7 @@ const TextArea = ({
         >Suggestions by AI assist</Button>
 
       </div>
+      <br />
       <br />
 
     </div>

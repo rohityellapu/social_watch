@@ -12,8 +12,11 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 const PostSocialWatchUi = () => {
 
-    const [date, setDate] = useState<Dayjs | null>(dayjs('2023-04-17'));
-    const [time, setTime] = useState<Dayjs | null>(dayjs('2023-04-17T15:30'));
+    // const [date, setDate] = useState<Dayjs | null>(dayjs('2023-04-17'));
+    // date show today date
+    const [date, setDate] = useState<Dayjs | null>(dayjs());
+    // const [time, setTime] = useState<Dayjs | null>(dayjs('2023-04-17T15:30'));
+    const [time, setTime] = useState<Dayjs | null>(dayjs());
     const socailwatch = useSelector((state: any) => state.socailwatch)
     // console.log(socailwatch, "socailwatch POst #£££££££££")
     // console.log(date, "date")
@@ -62,15 +65,15 @@ const PostSocialWatchUi = () => {
             <Paper elevation={3} sx={{
                 display: "flex",
                 flexDirection: "row",
-                p: 1, margin: 'auto', maxWidth: "98%", flexGrow: 1,
+                p: 1, margin: 'auto', maxWidth: "100%", flexGrow: 1,
             }}
             >
-                <Typography variant="h6" component="h6" 
+                <Typography variant="h6" component="h6"
                     sx={{
                         // fontWeight: "bold",
                         fontFamily: "Nunito Sans",
                         paddingLeft: "10px",
-                        paddingRight: "10px",
+                        paddingRight: "20px",
                         paddingTop: "5px",
                     }}
                 >
@@ -79,23 +82,28 @@ const PostSocialWatchUi = () => {
                 <Paper elevation={3} sx={{
                     display: "flex",
                     justifyContent: "space-between",
-                    paddingTop: "5px",
+                    // paddingTop: "5px",
                     paddingLeft: "10px",
-                    height: '2.5rem',
+                    marginTop: "3px",
+                    height: '2rem',
                     width: '40%',
 
                 }}>
-                    <Typography variant="h6" component="h6" 
+                    <Typography variant="p" component="p"
                         sx={{
-                            // fontWeight: "bold",
+                            fontWeight: "300",
                             fontFamily: "Nunito Sans",
                             float: "right",
+                            paddingTop: "5px",
                         }}
                     >
                         Specific days and times
                     </Typography>
 
-                    <Typography variant="h6" component="h6" gutterBottom>
+                    <Typography variant="p" component="p" gutterBottom
+
+
+                    >
                         <ArrowDropDownSharpIcon
                             // size
                             fontSize="large"
@@ -106,7 +114,7 @@ const PostSocialWatchUi = () => {
 
             </Paper>
             <Paper elevation={3} sx={{
-                p: 1, margin: 'auto', maxWidth: "98%", flexGrow: 1,
+                p: 1, margin: 'auto', maxWidth: "100%", flexGrow: 1,
                 // margin buttom: 10px;
                 mb: 1,
                 // disable border top and box shadow top none
@@ -148,7 +156,7 @@ const PostSocialWatchUi = () => {
                         </DemoContainer>
                     </LocalizationProvider>
                 </div>
-                <Typography variant="h6" component="h6" gutterBottom
+                <Typography variant="p" component="p" gutterBottom
                     sx={{
                         display: "flex",
                         justifyContent: "flex-start",
@@ -158,13 +166,16 @@ const PostSocialWatchUi = () => {
                 >
                     <AddIcon
                         // size
-                        fontSize="large"
+                        fontSize="medium"
                     /> Add more schedules times
                 </Typography>
             </Paper>
 
 
             {/* button right side */}
+            <br />
+
+            {/* <hr /> */}
 
             <div style={{
                 float: "right",

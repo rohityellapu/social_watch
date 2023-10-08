@@ -66,7 +66,7 @@ const PreviewWatch = ({ previewData }: PreviewWatchProps) => {
     }
         , [socialData.socialwatch.URL])
     return (
-        <Item>
+        // <Item>
             <Paper elevation={3}>
                 <Box sx={{ width: '100%' }} >
                     <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -110,7 +110,7 @@ const PreviewWatch = ({ previewData }: PreviewWatchProps) => {
                 </Box>
             </Paper>
 
-        </Item>
+        // </Item>
     );
 };
 

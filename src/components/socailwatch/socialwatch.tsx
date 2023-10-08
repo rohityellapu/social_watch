@@ -50,7 +50,6 @@ const SocialWatch = ({ aiTextJson, setSocial_channel, setCaptionType,
                 p: 1, margin: 'auto', maxWidth: "100%", flexGrow: 1,
                 // margin buttom: 10px;
                 mb: 1,
-                ml: 1,
             }}>
                 <Typography variant="h6" component="h6" gutterBottom
                     sx={{
@@ -76,7 +75,7 @@ const SocialWatch = ({ aiTextJson, setSocial_channel, setCaptionType,
             </Paper>
             {/* <br/> */}
 
-            <Item>
+            {/* <Item> */}
 
                 <BasicTabs setSocial_channel={setSocial_channel}
                     setCaptionType={setCaptionType}
@@ -97,7 +96,7 @@ const SocialWatch = ({ aiTextJson, setSocial_channel, setCaptionType,
                 <br/>
                 <br/>
                
-            </Item>
+            {/* </Item> */}
         </>
     );
 };
