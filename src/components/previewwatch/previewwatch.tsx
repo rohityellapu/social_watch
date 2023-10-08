@@ -74,7 +74,7 @@ const PreviewWatch = ({ previewData }: PreviewWatchProps) => {
                             <Tab label="Twitter " style={{
                                 textTransform: "none",
                             }} {...a11yProps(0)} />
-                            <Tab label="Facebook" style={{
+                            <Tab label="Linkedin" style={{
                                 textTransform: "none",
                             }}  {...a11yProps(1)} />
                         </Tabs>

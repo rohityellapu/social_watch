@@ -39,14 +39,14 @@ const PostSocialWatchUi = () => {
                 console.log(err, "err")
             })
 
-        } else if (socailwatch.socialChennal === 'Facebook') {
+        } else if (socailwatch.socialChennal === 'Linkedin') {
             payload = {
                 post: socailwatch.socialwatch.content,
                 time: new Date(`${datevalue} ${timevalue}`).getTime(),
                 date: `${datevalue} ${timevalue}`,
 
             }
-            axios.post("https://authserver-one.vercel.app/facebook", payload).then((res) => {
+            axios.post("https://authserver-one.vercel.app/Linkedin", payload).then((res) => {
                 console.log(res, "res")
             }).catch((err) => {
                 console.log(err, "err")

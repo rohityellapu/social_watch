@@ -25,7 +25,7 @@ export default function Connect() {
       <Button variant='outlined' sx={{marginRight:2}}>
         Connect another account
      </Button>
-     <Button variant='contained' onClick={() => router.push('/post')} >
+     <Button variant='contained' onClick={() => router.push('/scheduler')} >
         Start posting
      </Button>
       </div>  

@@ -18,7 +18,7 @@ const Item = styled(Paper)(({ theme }) => ({
 
 const tabsJson = [
     {
-        label: "Facebook",
+        label: "Linkedin",
         index: 0,
         component: ""
     },
