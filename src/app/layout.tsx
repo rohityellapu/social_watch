@@ -33,8 +33,10 @@ export const metadata = {
 const DRAWER_WIDTH = 240;
 const LINKS = [
   { text: 'Home', href: '/', icon: HomeIcon },
-  { text: 'Scheduler', href: '/starred', icon: StarIcon },
+  { text: 'Scheduler', href: '/scheduler', icon: StarIcon },
   { text: 'Analytics', href: '/tasks', icon: AnalyticsIcon },
+  // {text: 'ContenClender', href: '/contenclender', icon: AnalyticsIcon}
+  // { text: 'Analytics', href: '/tasks', icon: AnalyticsIcon },
 ];
 
 const PLACEHOLDER_LINKS = [
