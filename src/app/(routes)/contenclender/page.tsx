@@ -54,43 +54,43 @@ const lang = {
 
 
 
-function ContenClender({localizer}) {
+function ContenClender({ localizer }) {
 
-    const [culture, setCulture] = useState('en-GB')
-    const [rightToLeft, setRightToLeft] = useState(false)
+  const [culture, setCulture] = useState('en-GB')
+  const [rightToLeft, setRightToLeft] = useState(false)
 
-    const cultureOnClick = useCallback(
-        ({ target: { value } }) => {
-          // really better to useReducer for simultaneously setting multiple state values
-          setCulture(value)
-          setRightToLeft(value === 'ar-AE')
-        },
-        [setCulture]
-      )
-    
-      const { defaultDate, messages } = useMemo(
-        () => ({
-          defaultDate: new Date(2023, 3, 1),
-          messages: lang[culture],
-        }),
-        [culture]
-      )
-    
-  
-    return (
-        <div>
-            <Calendar
-                culture={culture}
-                defaultDate={defaultDate}
-                events={events}
-                localizer={localizer}
-                messages={messages}
-                rtl={rightToLeft}
-            />
-        </div>
-    )
+  const cultureOnClick = useCallback(
+    ({ target: { value } }) => {
+      // really better to useReducer for simultaneously setting multiple state values
+      setCulture(value)
+      setRightToLeft(value === 'ar-AE')
+    },
+    [setCulture]
+  )
+
+  const { defaultDate, messages } = useMemo(
+    () => ({
+      defaultDate: new Date(2023, 3, 1),
+      messages: lang[culture],
+    }),
+    [culture]
+  )
+
+
+  return (
+    <div>
+      <Calendar
+        culture={culture}
+        defaultDate={defaultDate}
+        events={events}
+        localizer={localizer}
+        messages={messages}
+        rtl={rightToLeft}
+      />
+    </div>
+  )
 }
 ContenClender.propTypes = {
-    localizer: PropTypes.instanceOf(DateLocalizer),
-  }
+  localizer: PropTypes.instanceOf(DateLocalizer),
+}
 export default ContenClender;

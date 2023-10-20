@@ -48,6 +48,7 @@ export const socialwatchSlice = createSlice({
       // console.log("action.payload addSocailChennal",action.payload)
       state.socialChennal = action.payload;
     },
+    
   },
   extraReducers: {
     // [HYDRATE]: (state, action) => {

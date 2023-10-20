@@ -12,6 +12,7 @@ import axios from 'axios'
 import { showGenerateAiOption, addSocialWatch } from "@/slices/socailwatchSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { type } from "os";
+import swal from 'sweetalert';
 
 const blue = {
   100: "#DAECFF",
@@ -191,8 +192,14 @@ const TextArea = ({
       // ts define url type
       const url = 'http://85.214.66.84:4040/get_caption'
       const response = await axios.post(url, payload)
+      // sweet alert message ai suggestion sucess
+      // if (response?.data?.captions[0]) {
+      //   swal("Your AI Suggestion has been Generated!", "success");
+      // }else{
+      //   swal("Your AI Suggestion has been not Generated!", "error");
+      // }
       // console.log(response, "textarea &&&&&&&&&&&&44$$$$$$$$$$$")
-      if (response.data.captions[0]) {
+      if (response?.data?.captions[0]) {
         // console.log("i am indcdcdscds", response.data.captions[0])
         // dispath action and set enableGenerateAiOption true in redux
         dispatch(showGenerateAiOption(true))

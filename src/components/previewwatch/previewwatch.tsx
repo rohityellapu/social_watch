@@ -101,11 +101,16 @@ const PreviewWatch = ({ previewData }: PreviewWatchProps) => {
                     <Paper elevation={0}>
                         {/* img from public folder */}
                         <iframe src={socialData.socialwatch.URL} style={{
-                            backgroundColor: "grey"
+                            backgroundColor: "grey",
+                            // width: "100%",
 
                         }}
-                        width="400"
-                        height="400"
+                            width="400"
+                            allowFullScreen
+                            // fullscreen
+                            // full width 
+                            // height="400"
+                            height="400"
                             scrolling='no'
                         ></iframe>
 

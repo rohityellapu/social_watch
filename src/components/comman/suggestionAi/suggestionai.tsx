@@ -4,6 +4,7 @@ import axios from 'axios';
 import ArrowDropDownSharpIcon from '@mui/icons-material/ArrowDropDownSharp';
 import { useSelector, useDispatch } from 'react-redux';
 import { addSocialWatch } from '@/slices/socailwatchSlice'
+import swal from 'sweetalert';
 interface TabPanelProps {
     children?: React.ReactNode;
     index: number;
@@ -114,6 +115,21 @@ const SuggestionAi = ({ aiTextJson,
             e.preventDefault()
             // console.log(payload, "e   **&^%%^")
             const response = await axios.post('http://85.214.66.84:4040/get_caption', payload)
+            if(response.data.captions[0]){
+                // sweet alert
+                swal({
+                    title: "success!",
+                    text: "Ai suggestion text generated successfully",
+                    icon: "success",
+                });
+
+            }else{
+                swal({
+                    title: "error!",
+                    text: "Ai suggestion text not generated",
+                    icon: "error",
+                });
+            }
             // console.log(response)
             setAiText(response.data.captions[0])
             setPreviewData(response.data.captions[0])
