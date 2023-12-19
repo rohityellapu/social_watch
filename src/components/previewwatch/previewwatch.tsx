@@ -59,12 +59,12 @@ const PreviewWatch = ({ previewData }: PreviewWatchProps) => {
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
-    console.log(socialData, "socialData?.URL")
+    console.log(socialData.socialwatch, "socialData?.URL")
     // console.log(socialData.socialwatch.URL, "socialData?.URL")
-    useEffect(() => {
-        // console.log(socialData.socialwatch.URL, "socialData?.URL")
-    }
-        , [socialData.socialwatch.previewUrl])
+    // useEffect(() => {
+    //     // console.log(socialData.socialwatch.URL, "socialData?.URL")
+    // }
+    //     , [socialData.socialwatch.previewUrl])
     return (
         // <Item>
         <Paper elevation={3}>
@@ -81,11 +81,11 @@ const PreviewWatch = ({ previewData }: PreviewWatchProps) => {
                 </Box>
                 <CustomTabPanel value={value} index={0}>
                     {
-                        socialData.socialwatch.content
+                        socialData?.socialwatch?.previewImageBool ? socialData.socialwatch.content : null
 
                     }
                     <Paper elevation={0}>
-                        <iframe src={socialData.socialwatch.previewUrl}
+                        <iframe src={socialData?.socialwatch?.previewImageBool ? socialData.socialwatch.previewUrl : null}
                             width="400"
                             height="400"
                             scrolling='no'
@@ -96,15 +96,17 @@ const PreviewWatch = ({ previewData }: PreviewWatchProps) => {
                 </CustomTabPanel>
                 <CustomTabPanel value={value} index={1}>
                     {
-                        socialData.socialwatch.content
+                        socialData?.socialwatch?.previewImageBool ? socialData.socialwatch.content : null
                     }
                     <Paper elevation={0}>
                         {/* img from public folder */}
-                        <iframe src={socialData.socialwatch.URL} style={{
-                            backgroundColor: "grey",
-                            // width: "100%",
+                        <iframe src={
+                            socialData?.socialwatch?.previewImageBool ? socialData.socialwatch.previewUrl : null}
+                            style={{
+                                backgroundColor: "grey",
+                                // width: "100%",
 
-                        }}
+                            }}
                             width="400"
                             allowFullScreen
                             // fullscreen

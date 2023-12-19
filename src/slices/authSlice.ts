@@ -44,6 +44,8 @@ export const authSlice = createSlice({
             state.youtube = action.payload;
         },
         addLogin: (state, action) => {
+        //    update only isLogin state true 
+        console.log("action.payload",action.payload)
             state.isLogin = action.payload;
         },
     },

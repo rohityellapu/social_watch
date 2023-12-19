@@ -15,7 +15,7 @@ export async function getApi(){
     var oauth_consumer_key=process.env.REACT_APP_TWITTER_CONSUMER_KEY;
     var oauth_consumer_secret=process.env.REACT_APP_TWITTER_CONSUMER_SECRET;
     
-    var CALLBACK_URL='https://authserver-one.vercel.app/twitter'
+    var CALLBACK_URL='http://localhost:8000/twitter'
         
         const authLink = await client.generateAuthLink(CALLBACK_URL, { linkMode: 'authorize' });
         return authLink;

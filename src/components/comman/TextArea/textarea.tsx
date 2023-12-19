@@ -115,6 +115,7 @@ const TextArea = ({
           console.log(dataurl, "dataurl1")
           dispatch(addSocialWatch({
             url: dataurl,
+            previewImageBool:false,
             // previewUrl: dataurl
           }))
           setUrl(dataurl)
@@ -155,7 +156,8 @@ const TextArea = ({
           console.log(dataurl, "dataurl2")
           dispatch(addSocialWatch({
             // url: url,
-            previewUrl: dataurl
+            previewUrl: dataurl,
+            previewImageBool:false,
           }))
 
           setPreviewUrl(dataurl)
@@ -190,8 +192,14 @@ const TextArea = ({
       e.preventDefault()
       // console.log(payload, "e   **&^%%^")
       // ts define url type
-      const url = 'http://85.214.66.84:4040/get_caption'
-      const response = await axios.post(url, payload)
+      const url = 'http://85.214.66.84:4380/get_caption'
+      const response = await axios.post(url, payload, {
+        headers: {
+          'Content-Type': 'application/json',
+          "Authorization": `Bearer 09d20e094fa6ca2556c81816b7a9563b93f7099f6f0f89aa6cf63b88e8m3e9`,
+          "Access-Control-Allow-Origin": "*",
+          }
+          })
       // sweet alert message ai suggestion sucess
       // if (response?.data?.captions[0]) {
       //   swal("Your AI Suggestion has been Generated!", "success");
@@ -206,7 +214,9 @@ const TextArea = ({
 
         dispatch(addSocialWatch({
           content: response.data.captions[0],
-          URL: url
+          URL: url,
+          previewUrl: socailName.socialwatch.previewUrl,
+          previewImageBool:false,
         }))
 
       }

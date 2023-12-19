@@ -6,7 +6,7 @@ export const Login = () => {
 
   const twitterLogin = async () => {
     const authWindow = window.open(
-      'https://authserver-one.vercel.app/auth/twitter',
+      'http://localhost:8000/auth/twitter',
       '_blank',
       'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=800,height=600,left=100,top=100'
     )
@@ -18,11 +18,11 @@ export const Login = () => {
       return
     }
 
-    const res = await fetch(`https://authserver-one.vercel.app/twitter1`)
+    const res = await fetch(`http://localhost:8000/twitter1`)
     const data = await res.json()
     console.log(data)
     const authURL = data.url
-    authWindow.location.href = `https://authserver-one.vercel.app/auth/twitter`
+    authWindow.location.href = `http://localhost:8000/auth/twitter`
 
     // listen for "window.opener.postMessage" sent from backend via <script>
     // window.addEventListener('message', (event) => {

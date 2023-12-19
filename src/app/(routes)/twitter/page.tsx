@@ -28,7 +28,7 @@ function Twitter() {
   const [message, setMessage] = useState("");
  
   useEffect(() => {
-    fetch('https://authserver-one.vercel.app/tweet').then((response) => response.json())
+    fetch('http://localhost:8000/tweet').then((response) => response.json())
     .then((data) => {
         console.log(data);
         setTweets(data);
@@ -48,7 +48,7 @@ function Twitter() {
       xhr.onload = function() {
       contentType = xhr.getResponseHeader('Content-Type');
     };
-    let res = await fetch("https://authserver-one.vercel.app/tweet",
+    let res = await fetch("http://localhost:8000/tweet",
     {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
@@ -68,7 +68,7 @@ function Twitter() {
         setTweet("");
         setTime("");
         setLink("");
-        fetch('https://authserver-one.vercel.app/tweet').then((response) => response.json())
+        fetch('http://localhost:8000/tweet').then((response) => response.json())
         .then((data) => {
            setTweets(data);
         })
@@ -138,7 +138,7 @@ catch (err) {
   //   }
       function deletetweet(id){
         try {
-          const response =  fetch(`https://authserver-one.vercel.app/tweet/${id}`, {
+          const response =  fetch(`http://localhost:8000/tweet/${id}`, {
                   method: "DELETE",
                 });
           if (!response.ok) {

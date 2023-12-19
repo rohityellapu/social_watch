@@ -21,6 +21,7 @@ const initialState: SocialWatchState = {
       tone: "",
       size: "",
       aiTypedText: false,
+      previewImageBool: false,
     },
   ],
   lodding: false,
@@ -48,7 +49,6 @@ export const socialwatchSlice = createSlice({
       // console.log("action.payload addSocailChennal",action.payload)
       state.socialChennal = action.payload;
     },
-    
   },
   extraReducers: {
     // [HYDRATE]: (state, action) => {

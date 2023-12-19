@@ -14,7 +14,7 @@ import axios from 'axios';
 const PostSocialWatchUi = () => {
 
     // const [date, setDate] = useState<Dayjs | null>(dayjs('2023-04-17'));
-    // date show today date
+    // date show today date in ist time zone
     const [date, setDate] = useState<Dayjs | null>(dayjs());
     // const [time, setTime] = useState<Dayjs | null>(dayjs('2023-04-17T15:30'));
     const [time, setTime] = useState<Dayjs | null>(dayjs());
@@ -22,7 +22,12 @@ const PostSocialWatchUi = () => {
     // console.log(socailwatch, "socailwatch POst #£££££££££")
     // console.log(date, "date")
     // console.log(time, "time")
+    
     const handleSchedule = () => {
+        // client_id = localStorage.getItem('token') 
+        const client_id = JSON.parse(localStorage.getItem('token') || '{}')
+        console.log(client_id?.client_id,"client_id")
+       
         let payload
 
         let timevalue = time?.get('hour') + ":" + time?.get('minute')
@@ -33,8 +38,9 @@ const PostSocialWatchUi = () => {
                 tweet: socailwatch.socialwatch.content,
                 time: new Date(`${datevalue} ${timevalue}`).getTime(),
                 date: `${datevalue} ${timevalue}`,
+                client_id:client_id?.client_id
             }
-            axios.post("https://authserver-one.vercel.app/tweet", payload).then((res) => {
+            axios.post("http://localhost:8000/twitter/tweetstore", payload).then((res) => {
                 console.log(res, "res")
                 // if res is sucess then show alert sucess
                 if (res?.data?.status === 200) {
@@ -55,7 +61,7 @@ const PostSocialWatchUi = () => {
                 date: `${datevalue} ${timevalue}`,
 
             }
-            axios.post("https://authserver-one.vercel.app/Linkedin", payload).then((res) => {
+            axios.post("http://localhost:8000/Linkedin", payload).then((res) => {
                 console.log(res, "res")
 
                 // if res is sucess then show alert sucess
