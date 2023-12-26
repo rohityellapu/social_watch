@@ -1,9 +1,13 @@
 'use client'
 import Image from 'next/image';
+import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import { useRouter } from 'next/navigation';
 import { Card, Box, Grid, CardMedia, Button, Typography } from '@mui/material';
 export default function Connect() {
   const router = useRouter();
+  function responseFacebook(response) {
+    console.log(response);
+  }
   return (
     <>
       <Grid
@@ -51,9 +55,21 @@ export default function Connect() {
             textAlign: 'center',
 
           }} variant="h6" component="p">Facebook</Typography>
-          <Button sx={{
-            marginTop: 1
-          }} variant='contained'>Connect</Button>
+          <FacebookLogin
+              appId="407789194912524"
+              autoLoad={false}
+              fields="name,email,picture"
+              scope="public_profile,user_friends,user_actions.books"
+              callback={responseFacebook}
+              redirectUri='https://dsocial.flable.ai/'
+              render={renderProps => (
+                <Button onClick={renderProps.onClick} sx={{
+                  marginTop: 1
+                }} variant='contained'>Connect</Button>
+              )}
+              // buttonStyle={{height: '40px', width: '200px', padding: '4px', fontSize: '15px'}}
+            />
+          
         </Card>
         <Card sx={{ padding: 2, textAlign: 'center', }} >
           <CardMedia
