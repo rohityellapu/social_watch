@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { Card, Box, Grid, CardMedia, Button, Typography } from '@mui/material';
 export default function Connect() {
   const router = useRouter();
-  function responseFacebook(response) {
+  function responseFacebook(response: any) {
     console.log(response);
   }
   return (
@@ -62,7 +62,7 @@ export default function Connect() {
               scope="public_profile,user_friends,user_actions.books"
               callback={responseFacebook}
               redirectUri='https://dsocial.flable.ai/'
-              render={renderProps => (
+              render={(renderProps: any) => (
                 <Button onClick={renderProps.onClick} sx={{
                   marginTop: 1
                 }} variant='contained'>Connect</Button>
