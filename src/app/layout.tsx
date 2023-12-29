@@ -27,10 +27,10 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 // import {addLogin} from '@/slices/authSlice';
 // import { useDispatch,useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
-export const metadata = {
-  title: 'Social Watch',
-  description: 'Social Watch',
-};
+// export const metadata = {
+//   title: 'Social Watch',
+//   description: 'Social Watch',
+// };
 
 const DRAWER_WIDTH = 240;
 const LINKS = [
